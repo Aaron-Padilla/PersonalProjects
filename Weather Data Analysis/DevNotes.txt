@@ -1,0 +1,57 @@
+WeatherAnalysis Concept - DevNotes
+
+By:           Aaron Padilla
+Start Date:   5/15/2025
+
+Last Edit:    6/3/2025 [CHANGE EVERY TIME]
+
+Current V.:   0.0.8
+
+---------------------------------------------------------------------
+Description: 
+
+
+---------------------------------------------------------------------
+0.0.9: 
+
+ToDo: 
+
+[ ] Fix histograms to eliminate outliers by implementing a z-score filter
+
+Notes:
+
+---------------------------------------------------------------------
+0.0.8 
+
+Notes:
+
+6/3/2025
+
+* This current version has most of the core functionality for descriptive
+visual graphs of each numeric field.
+
+* The only problem I ran into while trying to automate the histograms is
+a divide by zero error. I was trying to trace where and how that happened.
+
+* What I found was that the Los Angeles data doesn't have much recorded
+snowfall. (big surprise there)
+
+  > So that means I'll have to do a try & catch statement for divide by zero
+    errors, and skip that graph.
+
+(~20 mins later)
+
+* Fixed the bug by putting a try-except clause for a ZeroDivisionError where
+the min, max, range, span values are initialized in the first for loop 
+(for i ...) of the histograms() function.
+
+  > If there are no values present, there's nothing to report on, 
+
+* NOTE: Some of the data has outliers on the "10%" and "100%" extremes, 
+aka, I need to adjust the scope of values considered for the histograms
+to account for non-outlier values. Easy-ish fix. 
+
+  > an idea I have is to initialize a variable which loads the current series
+    and eliminates the "5-10% outlier values" to get a better read on the 
+    "representative" distribution of data/variation.
+    
